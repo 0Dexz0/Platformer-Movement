@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://cdwjm2i0iblc4"]
+
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_bhb7g"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_56o5f"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_7602k"]
+[ext_resource type="PackedScene" uid="uid://b6j6v6gdewc0r" path="res://scenes/Player/player.tscn" id="4_56o5f"]
+[ext_resource type="Texture2D" uid="uid://di8abe44rp8bk" path="res://icon.svg" id="5_7602k"]
+
+[sub_resource type="Resource" id="Resource_7602k"]
+script = ExtResource("3_7602k")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_56o5f"]
+size = Vector2(406, 20)
+
+[node name="World" type="Node2D" unique_id=689304364]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1773558539]
+top_level = true
+position = Vector2(101, 56)
+zoom = Vector2(0.355, 0.355)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D" unique_id=948552003]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("1_bhb7g")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="Cameras" type="Node" parent="." unique_id=1924548921]
+
+[node name="PhantomCamera2D" type="Node2D" parent="Cameras" unique_id=548668995]
+top_level = true
+position = Vector2(101, 56)
+script = ExtResource("2_56o5f")
+follow_mode = 5
+zoom = Vector2(0.355, 0.355)
+tween_resource = SubResource("Resource_7602k")
+dead_zone_width = 0.149
+dead_zone_height = 0.149
+metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
+
+[node name="Player" parent="." unique_id=91494366 instance=ExtResource("4_56o5f")]
+position = Vector2(101, 53)
+jump_buffer_time = 0.12
+coyote_time = 0.12
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=600854421]
+position = Vector2(99, 102)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1599407740]
+shape = SubResource("RectangleShape2D_56o5f")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=770865102]
+scale = Vector2(3.1875, 0.15625)
+texture = ExtResource("5_7602k")

@@ -1,0 +1,15 @@
+TileMapLayer
+Timer
+Node
+PlayerStateBase
+AnimationTree
+Sprite2D
+StateBase
+StateMachine
+CollisionShape2D
+StaticBody2D
+PhantomCamera2D
+PhantomCameraHost
+Camera2D
+AnimationPlayer
+CharacterBody2D
